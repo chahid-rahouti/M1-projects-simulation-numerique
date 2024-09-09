@@ -70,8 +70,10 @@ Pour exécuter ces codes, voici les instructions à suivre :
 
 ### Le cas de 1D
 g++ -o myprog main.cpp
+
 ./myprog simu.cfg
 
 ### Le cas de 3D
 g++ -std=c++17 -o myprog main.cpp
+
 ./myprog simu.cfg
