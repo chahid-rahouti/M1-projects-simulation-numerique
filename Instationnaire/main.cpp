@@ -5,30 +5,32 @@
 #include "VECTS.hpp"
 //#include "EXACT.hpp"
 
-
-
-
-
-
-int main()
+int main(int argc, char* argv[])
 { 
+  if (argc != 2) {
+    std::cerr << "Usage: " << argv[0] << " <config_file>\n";
+    return 1;
+  }
+
+  const char* config_file = argv[1];
+
   // appeler le constructeur DUCU pour les donnees 
-  DOCU docu("simu.cfg");
+  DOCU docu(config_file);
   // appeler le constructeur DUCU pour M
-  DOCU M_n("simu.cfg");
+  DOCU M_n(config_file);
   // appeler le constructeur DUCU pour N
-  DOCU M_s("simu.cfg");
+  DOCU M_s(config_file);
   // appele de la matrice A 
-  Matrice MATRICEE(M_n, M_n,docu);
+  Matrice MATRICEE(M_n, M_n, docu);
   //std::cout << "A : " << "\n"<<MATRICEE << "\n";
   // appele des matrices de la décomposition L,U 
-  LU lu(M_n, M_n,docu);
+  LU lu(M_n, M_n, docu);
   //std::cout << "L and U : " << "\n"<<lu << "\n";
   // appele de seconde membre F et le pas de temps et d'espace 
-  VECT vect(M_n,M_s,docu);
+  VECT vect(M_n, M_s, docu);
   //std::cout << "CIC : " << "\n"<<vect << "\n";
   // appele de la solution
-  VECTS vects(M_n,M_n,M_s,docu);
+  VECTS vects(M_n, M_n, M_s, docu);
   std::cout << "CIC : " << "\n"<<vects << "\n";
   //// nom du fichier de sortie 
   std::ofstream fichier_csv("resultats210.csv");

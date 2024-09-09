@@ -1,7 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include"Lire.hpp"
-#include"Matrice.hpp"
+#include"matrice.hpp"
 #include"VECT.hpp"
 #include"LU.hpp"
 

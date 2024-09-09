@@ -6,30 +6,33 @@
 #include "VECTS.hpp"
 #include "EXACT.hpp"
 
-
-
-
-
-int main()
+int main(int argc, char* argv[])
 { 
+  if (argc != 2) {
+    std::cerr << "Usage: " << argv[0] << " <config_file>\n";
+    return 1;
+  }
+
+  const char* config_file = argv[1];
+
   // appeler le constructeur DUCU pour les donnees 
-  DOCU docu("simu.cfg");
+  DOCU docu(config_file);
   // appeler le constructeur DUCU pour M
-  DOCU M_n("simu.cfg");
+  DOCU M_n(config_file);
   // appele de la matrice A 
-  Matrice MATRICE(M_n, M_n,docu);
+  Matrice MATRICE(M_n, M_n, docu);
   //std::cout << "MATRICE : " << "\n"<<MATRICE << "\n";
   // appele de seconde membre F et le pas de temps et d'espace
-  VECT vect(M_n,docu);
+  VECT vect(M_n, docu);
   //std::cout << "vecteur : " << "\n"<<vect << "\n";
   // appele des matrices de la décomposition L,U 
-  LU lu(M_n, M_n,docu);
+  LU lu(M_n, M_n, docu);
   //std::cout << "MATRICE : " << "\n"<<lu << "\n";
   // appele de la solution approcher
-  VECTS vects(M_n,M_n,docu);
+  VECTS vects(M_n, M_n, docu);
   //std::cout << "vecteur : " << "\n"<<vects << "\n";
   // appele de la solution exacte
-  EXACT exact(M_n,docu);
+  EXACT exact(M_n, docu);
   //std::cout << "vecteur : " << "\n"<<exact << "\n";
   std::ofstream fichier_csv("resultats2.csv");
   if (fichier_csv.is_open())
@@ -52,12 +55,5 @@ int main()
     std::cerr << "Erreur lors de l'ouverture du fichier CSV.\n";
   }
 
-
-  
   return 0;
 }
-
-
-
-
-

@@ -18,7 +18,7 @@ public:
     VECT F(n, docu);
    // Initialisation des tableaux Y_solution
     for (int i = 1; i < M_n.getM(); ++i)
-    {   /
+    {   
         Y[0] = F.getM_b(0)/lu.getL(0)[0];
         Y[i]= (F.getM_b(i) - (lu.getL(i)[i-1] * Y[i-1]))/lu.getL(i)[i];
     }
